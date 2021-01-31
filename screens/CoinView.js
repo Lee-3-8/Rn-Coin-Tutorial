@@ -1,9 +1,9 @@
 import React from 'react'
 import {StyleSheet, Text, View} from 'react-native';
 
-const CoinView = () => {
+const CoinView = ( {style} ) => {
   return (
-    <View style= {styles.container}>
+    <View style= {[styles.container, style]}>
       <Text>New Views</Text>
     </View>
   )
