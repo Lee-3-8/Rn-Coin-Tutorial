@@ -4,7 +4,7 @@ import {StyleSheet, Text, View} from 'react-native';
 const CoinView = () => {
   return (
     <View style= {styles.container}>
-      <Text>New View</Text>
+      <Text>New Views</Text>
     </View>
   )
 }

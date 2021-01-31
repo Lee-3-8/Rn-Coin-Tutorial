@@ -1,25 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import Constants from 'expo-constants';
 import CoinView from './screens/CoinView'
 
 export default function App() {
   return (
-    <CoinView></CoinView>
+    <View style={styles.container}>
+      <View style = {styles.statusBar}/>
+      <CoinView/>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    // flexDirection: 'row',
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+  statusBar: {
+    backgroundColor: '#C2185B',
+    height: Constants.statusBarHeight
   },
-  box: {
-    backgroundColor: 'black',
-    width: 50,
-    height: 50,
+  container: {
+    flex: 1
   }
 });
