@@ -1,16 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import CoinView from './screens/CoinView'
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <View style={[styles.box , {backgroundColor:'red'}]}></View>
-      <View style={[styles.box , {}]}></View>
-      <View style={[styles.box , {backgroundColor:'pink'}]}></View>
-      <Text>fuck</Text>
-      <StatusBar style="auto" />
-    </View>
+    <CoinView></CoinView>
   );
 }
 
