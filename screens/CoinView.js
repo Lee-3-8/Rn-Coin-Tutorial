@@ -40,7 +40,7 @@ import {PRIVATE_KEY} from  '../config';
 //     },
 // ];
 
-const CoinView = ( {style} ) => {
+const CoinView = ( {style, time} ) => {
 
   const [fetchData,SetFetchData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -48,6 +48,7 @@ const CoinView = ( {style} ) => {
   const getCoinData = async() => {
     try {
       setLoading(true)
+      console.log(PRIVATE_KEY)
       const { data:{data} } = await axios({
         url:'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest',
         params: {
@@ -58,6 +59,7 @@ const CoinView = ( {style} ) => {
         headers: {
         'X-CMC_PRO_API_KEY': PRIVATE_KEY
       }});
+      time(new Date().toLocaleString())
       SetFetchData(data)
       setLoading(false)
       // console.log(data)

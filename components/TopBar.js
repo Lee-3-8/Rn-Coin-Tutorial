@@ -1,11 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-const TopBar = ( {title} ) => {
+const TopBar = ( {title, refreshDate} ) => {
   return (
     <View style={styles.container}>
       <Text>Left</Text>
-      <Text>{title || 'TITLE'}</Text>
+      <View>
+        <Text>{title || 'TITLE'}</Text>
+        <Text>{refreshDate || ''}</Text>
+      </View>
       <Text>Right</Text>
     </View>
   );
