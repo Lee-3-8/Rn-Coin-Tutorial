@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
-import {StyleSheet, Text, View,ScrollView } from 'react-native';
+import {StyleSheet, Text, View,FlatList } from 'react-native';
 import CoinItem from '../components/CoinItem';
 import {PRIVATE_KEY} from  '../config';
 import {TESTDATA} from  '../testData';
@@ -14,19 +14,17 @@ const CoinView = ( {style, time} ) => {
   const getCoinData = async() => {
     try {
       setLoading(true)
-      console.log(PRIVATE_KEY)
-      const data = TESTDATA.slice(0,100);
-      // const { data:{data} } = await axios({
-      //   url:'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest',
-      //   params: {
-      //     'start': '1',
-      //     'limit': '100',
-      //     'convert': 'USD'
-      //   },
-      //   headers: {
-      //   'X-CMC_PRO_API_KEY': PRIVATE_KEY
-      // }});
-
+      // const data = TESTDATA.slice(0,10);
+      const { data:{data} } = await axios({
+        url:'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest',
+        params: {
+          'start': '1',
+          'limit': '100',
+          'convert': 'USD'
+        },
+        headers: {
+        'X-CMC_PRO_API_KEY': PRIVATE_KEY
+      }});
       time(new Date().toLocaleString())
       SetFetchData(data)
       setLoading(false)
@@ -42,24 +40,26 @@ const CoinView = ( {style, time} ) => {
     getCoinData();
   }, []);
 
-  let coinItems = fetchData.map((data, index) => {
-    const {cmc_rank, name, quote:{USD:{price, market_cap}}} = data;
+  let coinItems = ({item}) => {
+    console.log(item +`\n`)
+    const {cmc_rank, name, quote:{USD:{price, market_cap}}} = item;
+    // console.log(cmc_rank,name,price,market_cap)
     return (
       <CoinItem
-        key={index}
         rank={cmc_rank}
         name={name}
         price={price}
         volume={market_cap}
       />
     )
-  });
-
+  }
 
   return loading? <View style={styles.loading}><Text>로딩중입니다...</Text></View>:(
-    <ScrollView  style= {[styles.container, style]}>
-      {coinItems}
-    </ScrollView >
+    <FlatList 
+      data={fetchData}
+      renderItem={coinItems}
+      keyExtractor={item => item.name}
+      />
   );
 }
 
