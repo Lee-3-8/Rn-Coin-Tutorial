@@ -14,17 +14,17 @@ const CoinView = ( {style, time} ) => {
   const getCoinData = async() => {
     try {
       setLoading(true)
-      // const data = TESTDATA.slice(0,10);
-      const { data:{data} } = await axios({
-        url:'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest',
-        params: {
-          'start': '1',
-          'limit': '100',
-          'convert': 'USD'
-        },
-        headers: {
-        'X-CMC_PRO_API_KEY': PRIVATE_KEY
-      }});
+      const data = TESTDATA.slice(0,10);
+      // const { data:{data} } = await axios({
+      //   url:'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest',
+      //   params: {
+      //     'start': '1',
+      //     'limit': '100',
+      //     'convert': 'USD'
+      //   },
+      //   headers: {
+      //   'X-CMC_PRO_API_KEY': PRIVATE_KEY
+      // }});
       time(new Date().toLocaleString())
       SetFetchData(data)
       setLoading(false)
@@ -59,6 +59,8 @@ const CoinView = ( {style, time} ) => {
       data={fetchData}
       renderItem={coinItems}
       keyExtractor={item => item.name}
+      refreshing={loading}
+      onRefresh={getCoinData}  
       />
   );
 }
