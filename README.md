@@ -4,4 +4,5 @@
 
 - 실행이미지 
 
-![image](https://user-images.githubusercontent.com/42242359/107338817-562e1f00-6aff-11eb-83f1-50de147c1208.png)
+![image](https://user-images.githubusercontent.com/42242359/107339240-cfc60d00-6aff-11eb-8b4e-af2f0e274655.png)
+
